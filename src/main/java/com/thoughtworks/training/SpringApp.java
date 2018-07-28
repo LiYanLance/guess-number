@@ -1,26 +1,27 @@
 package com.thoughtworks.training;
 
+import com.google.common.collect.ImmutableList;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.ClassPathResource;
 
-import java.io.BufferedInputStream;
-import java.io.DataInputStream;
-import java.io.IOException;
 import java.util.List;
 
 public class SpringApp {
-    public String getGreeting() {
-        return "Hello world.";
+    public static void main(String[] args) {
+        traditionalWay();
+        springWay();
     }
 
-    public static void main(String[] args) throws IOException {
+    private static void springWay() {
         XmlBeanFactory beanFactory = new XmlBeanFactory(new ClassPathResource("context.xml"));
-        Processor processor = beanFactory.getBean(Processor.class);
-        DataInputStream in = new DataInputStream(new BufferedInputStream(System.in));
-        String line;
-        while ((line = in.readLine()).length() != 0) {
-            List<String> process = processor.process(line);
-            System.out.println(process);
-        }
+        MovieLister lister = beanFactory.getBean(MovieLister.class);
+        List<String> results = lister.find("Godfather");
+        System.out.println(String.format("spring find: %s", results));
+    }
+
+    public static void traditionalWay() {
+        MovieLister lister = new MovieLister(ImmutableList.of(new MovieFinderImpl()));
+        List<String> results = lister.find("Godfather");
+        System.out.println(String.format("we find: %s", results));
     }
 }
