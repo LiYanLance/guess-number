@@ -1,10 +1,12 @@
 package com.thoughtworks.training;
 
 import com.google.common.collect.ImmutableList;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class MovieFinderImpl implements MovieFinder {
 
     private List<String> movies = ImmutableList.of(
