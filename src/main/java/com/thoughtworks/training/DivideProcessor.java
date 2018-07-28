@@ -1,13 +1,21 @@
 package com.thoughtworks.training;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
+import org.springframework.context.annotation.Profile;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Profile("divide")
+@Component
 public class DivideProcessor implements Processor {
 
     private final int operand;
 
-    public DivideProcessor(int operand) {
+    public DivideProcessor(@Value("${divide.operand}")int operand) {
         this.operand = operand;
     }
 

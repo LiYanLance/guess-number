@@ -1,13 +1,19 @@
 package com.thoughtworks.training;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Profile("multiply")
+@Component
 public class MultiplyProcessor implements Processor {
 
     private final int operand;
 
-    public MultiplyProcessor(int operand) {
+    public MultiplyProcessor(@Value("${multiply.operand}") int operand) {
         this.operand = operand;
     }
 
