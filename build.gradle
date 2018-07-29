@@ -26,5 +26,6 @@ repositories {
 dependencies {
     compile 'com.google.guava:guava:21.0'
     compile('org.springframework.boot:spring-boot-starter')
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
