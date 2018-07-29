@@ -1,5 +1,7 @@
 package com.thoughtworks.training.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Person {
     public Person(String name, String from) {
         this.name = name;
@@ -24,5 +26,6 @@ public class Person {
 
     private String name;
 
+    @JsonIgnore
     private String from;
 }
